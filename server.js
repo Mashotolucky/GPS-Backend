@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-var server = require( 'https' );
+var server = require( 'http' ).Server( app );
 
 const corsOptions = {
     origin: '*'
