@@ -59,7 +59,41 @@ CREATE TABLE public.waypoints(
 	Primary Key(ID)
 );
 
+-- create alternative waypoints
+
+CREATE TABLE public.alternative_waypoints(
+    ID serial NOT NULL,
+    locationID integer,
+    lat numeric,
+    lng numeric,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+	Primary Key(ID)
+);
+
+CREATE TABLE public.alternative_waypoints_two(
+    ID serial NOT NULL,
+    locationID integer,
+    lat numeric,
+    lng numeric,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+	Primary Key(ID)
+);
+
 ALTER TABLE public.waypoints
+    ADD FOREIGN KEY (locationID)
+    REFERENCES public.location (ID)
+    ON DELETE CASCADE
+    NOT VALID;
+
+ALTER TABLE public.alternative_waypoints
+    ADD FOREIGN KEY (locationID)
+    REFERENCES public.location (ID)
+    ON DELETE CASCADE
+    NOT VALID;
+
+ALTER TABLE public.alternative_waypoints_two
     ADD FOREIGN KEY (locationID)
     REFERENCES public.location (ID)
     ON DELETE CASCADE
@@ -195,4 +229,72 @@ VALUES
 (8, -25.540486040551873, 28.096069693565372),
 (8, -25.54043763842531, 28.0961287021637);
 
+-- 12-120 Office
 
+INSERT INTO location (name, lat, lng)
+VALUES ('12-120', -25.539779367564357, 28.096116008078596);
+
+
+INSERT INTO waypoints (locationID, lat, lng) 
+VALUES 
+(9, -25.53981808947975, 28.095918133250276),
+(9, -25.53981808947975, 28.095918133250276);
+
+-- 12-115 Office
+
+INSERT INTO location (name, lat, lng)
+VALUES ('12-115', -25.53982292971829, 28.096128780536972);
+
+INSERT INTO waypoints (locationID, lat, lng) 
+VALUES 
+(10, -25.53981808947975, 28.095918133250276),
+(10, -25.53981808947975, 28.095918133250276);
+
+
+
+-- Alternatives waypoints
+
+-- Ruth First Hall
+
+INSERT INTO alternative_waypoints (locationID, lat, lng)
+VALUES
+(1, -25.54077161270084, 28.094809055328373),
+(1, -25.541139467348046, 28.094798326492313),
+(1, -25.541304033535365, 28.09534013271332),
+(1, -25.541642845562745, 28.09534549713135),
+(1, -25.541444398634297, 28.096042871475223),
+(1, -25.541657366056807, 28.096021413803104);
+
+-- Cafeteria
+
+INSERT INTO alternative_waypoints (locationID, lat, lng)
+VALUES
+(6, -25.540481200340093, 28.09515774250031),
+(6, -25.540529602449073, 28.095066547393802),
+(6, -25.540703849879574, 28.095248937606815);
+
+
+INSERT INTO alternative_waypoints_two (locationID, lat, lng)
+VALUES
+(6, -25.54139115671956, 28.096053600311283),
+(6, -25.54141535759284, 28.096048235893253),
+(6, -25.541608964403096, 28.09535086154938),
+(6, -25.541318554070457, 28.095302581787113),
+(6, -25.54109106548527, 28.095066547393802),
+(6, -25.540916818617458, 28.095071911811832);
+
+-- 12-120 Office
+
+INSERT INTO alternative_waypoints (locationID, lat, lng)
+VALUES
+(9, -25.540447318852184, 28.096134034278048),
+(9, -25.540447318852184, 28.096134034278048),
+(9, -25.540079462081525, 28.09614849801066);
+
+-- 12-115 Office
+
+INSERT INTO alternative_waypoints (locationID, lat, lng)
+VALUES
+(10, -25.540447318852184, 28.096134034278048),
+(10, -25.540447318852184, 28.096134034278048),
+(10, -25.540079462081525, 28.09614849801066);
