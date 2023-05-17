@@ -10,7 +10,7 @@ const connectionString = `postgresql://${process.env.PGUSER}:${process.env.PGPAS
 
 const pool = new Pool({
   connectionString: isProduction? process.env.DATABASE_URL : connectionString,
-  ssl: { rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), },
+  ssl: { rejectUnauthorized: ('DATABASE_SSL_SELF', false), },
   secure: true,
   secureOptions: {rejectUnauthorized: false}
 });
